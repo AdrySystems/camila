@@ -85,6 +85,12 @@
             </nav>
 
             <div class="flex items-center space-x-2 sm:space-x-3">
+                <!-- Botón de Bienvenida por Voz -->
+                <button onclick="reproducirBienvenidaVoz()" class="relative p-2.5 text-[#5C2D20] hover:text-[#C5943F] transition-colors bg-[#FAF6F0] rounded-full border border-[#F4EFE6] shadow-sm flex items-center gap-1.5 px-3.5" title="Escuchar Bienvenida por Voz">
+                    <i class="fa-solid fa-volume-high text-base text-[#C5943F]"></i>
+                    <span class="text-xs font-semibold hidden sm:inline"></span>
+                </button>
+
                 <button id="admin-icon-btn" onclick="checkAdminAccess()" class="relative p-2.5 text-[#5C2D20] hover:text-[#C5943F] transition-colors bg-[#FAF6F0] rounded-full border border-[#F4EFE6] shadow-sm" title="Panel Administrador">
                     <i id="admin-icon-i" class="fa-solid fa-user-shield text-lg"></i>
                 </button>
@@ -105,13 +111,13 @@
 
         <div id="mobile-menu" class="hidden lg:hidden border-t border-[#F4EFE6] bg-white px-4 py-4 space-y-3 transition-all duration-300">
             <a href="#galeria" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-stone-600 hover:text-[#C5943F] hover:bg-[#FAF6F0] transition-colors duration-300 text-sm font-medium flex items-center gap-2">
-                <i class="fa-solid fa-table-cells-large text-[#C5943F]"></i> Nuestro Catálogo
+                <i class="fa-solid fa-table-cells-large text-[#C5943F]"></i> Catálogo
             </a>
             <a href="#agenda" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-stone-600 hover:text-[#C5943F] hover:bg-[#FAF6F0] transition-colors duration-300 text-sm font-medium flex items-center gap-2">
-                <i class="fa-solid fa-calendar-check text-[#C5943F]"></i> Agenda de servicios
+                <i class="fa-solid fa-calendar-check text-[#C5943F]"></i> Agenda
             </a>
             <a href="#experiencia" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-stone-600 hover:text-[#C5943F] hover:bg-[#FAF6F0] transition-colors duration-300 text-sm font-medium flex items-center gap-2">
-                <i class="fa-solid fa-award text-[#C5943F]"></i> Garantía Camila
+                <i class="fa-solid fa-award text-[#C5943F]"></i> Garantía
             </a>
             <a href="#contacto" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-stone-600 hover:text-[#C5943F] hover:bg-[#FAF6F0] transition-colors duration-300 text-sm font-medium flex items-center gap-2">
                 <i class="fa-solid fa-envelope text-[#C5943F]"></i> Contacto
@@ -1264,6 +1270,34 @@
                 menu.classList.add('hidden');
                 icon.className = 'fa-solid fa-bars text-lg';
             }
+        }
+
+        // Función de bienvenida por voz utilizando la API nativa del navegador (SpeechSynthesis)
+        function reproducirBienvenidaVoz() {
+            if (!('speechSynthesis' in window)) {
+                showToast("Tu navegador no soporta la reproducción de voz.", "error");
+                return;
+            }
+
+            // Cancelar cualquier audio anterior en reproducción
+            window.speechSynthesis.cancel();
+
+            const textoBienvenida = "Bienvenido a Camila, Mobiliario y Eventos. Creamos el escenario ideal para tus mejores recuerdos...";
+            
+            const utterance = new SpeechSynthesisUtterance(textoBienvenida);
+            utterance.lang = 'es-MX'; // Configurar voz en español latino
+            utterance.rate = 1.0; // Velocidad normal
+            utterance.pitch = 1.0; // Tono normal
+
+            utterance.onstart = () => {
+                showToast("Reproduciendo mensaje de bienvenida...", "success");
+            };
+
+            utterance.onerror = () => {
+                showToast("No se pudo reproducir la voz en este dispositivo.", "error");
+            };
+
+            window.speechSynthesis.speak(utterance);
         }
     </script>
 </body>
