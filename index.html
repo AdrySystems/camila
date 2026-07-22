@@ -1494,7 +1494,7 @@
 
             const el = document.getElementById('contador-visitas');
             if (el) {
-                fetch('https://api.counterapi.dev/v1/camila_mobiliario_eventos_v2/visitas/up')
+                fetch('https://api.counterapi.dev/v1/camila_mobiliario_eventos_v3/visitas/up')
                     .then(response => {
                         if (!response.ok) throw new Error('Error de conexión');
                         return response.json();
