@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es" class="scroll-smooth overflow-x-clip">
 <head>
     <meta charset="UTF-8">
@@ -412,6 +413,11 @@
                     <ul class="space-y-2 text-sm font-light">
                         <li class="flex justify-between items-center"><span><i class="fa-solid fa-clock text-[#C5943F] mr-2"></i>Lunes a sábado:</span> <span class="text-white">9:00 AM - 7:00 PM</span></li>
                         <li class="flex justify-between items-center"><span><i class="fa-solid fa-clock text-[#C5943F] mr-2"></i>Domingo:</span> <span class="text-white">10:00 AM - 3:00 PM</span></li>
+                        <br><br>
+                        <p class="serif-font text-xs font-semibold text-white tracking-wider mb-2">Escanea nuestro código QR</p>
+                        <div class="bg-white p-2.5 rounded-2xl border border-[#C5943F]/40 shadow-md inline-block">
+                            <img src="qr.png" alt="Código QR Camila Mobiliario" class="w-28 h-28 object-contain">
+                         </div>
                     </ul>
                 </div>
             </div>
@@ -914,7 +920,6 @@
                     "DECORACIÓN3.jpeg",
                     "DECORACIÓN4.jpeg",
                     "DECORACIÓN5.jpeg",
-                    "DECORACIÓN6.jpeg",
                     "DECORACIÓN7.jpeg",
                     "DECORACION8.jpeg",
                     "DECORACIÓN9.jpeg",
@@ -1028,7 +1033,7 @@
             },
             {
                 id: 12,
-                nombre: "Robots Animadores Gigantes con LED",
+                nombre: "Robots Animadores gigantes con LED, pista iluminada y pista vintage",
                 descripcion: `
                     <div class="space-y-3">
                         <p class="font-light leading-relaxed">Espectáculo vanguardista de alto impacto visual diseñado para revolucionar la pista de baile.</p>
@@ -1055,7 +1060,8 @@
                 imagen: "ROBOTS1.jpeg",
                 imagenesSlider: [
                     "ROBOTS1.jpeg",
-                    "ROBOTS2.jpeg"
+                    "ROBOTS2.jpeg",
+                    "DECORACIÓN6.jpeg"
                 ],
                 categoria: "animacion",
                 categoriaTexto: "Robots animadores",
@@ -1391,7 +1397,6 @@
             }
         }
 
-        // Variable para controlar si el audio ya se reprodujo automáticamente
         let vozReproducida = false;
 
         function reproducirBienvenidaVoz(isAutomatic = false) {
@@ -1402,7 +1407,6 @@
 
             if (isAutomatic && vozReproducida) return;
 
-            // Asegurar que cualquier síntesis previa se detenga
             window.speechSynthesis.cancel();
 
             const textoBienvenida = "Bienvenido a Camila, Mobiliario y Eventos. Creamos el escenario ideal para tus mejores recuerdos con la renta de mobiliario, carpas y estructuras, manteleria y arreglos, letras 3D gigantes espectaculares, mesas de postres, robots animadores y banquetes tradicionales. Todo lo que imaginas, hecho realidad con la elegancia que te mereces.";
@@ -1422,7 +1426,6 @@
             };
 
             try {
-                // Algunos navegadores requieren reanudar la síntesis
                 if (window.speechSynthesis.paused) {
                     window.speechSynthesis.resume();
                 }
@@ -1437,7 +1440,6 @@
             fetchGlobalAgenda();
             updateAdminIconState();
 
-            // Mecanismo principal para desbloquear y reproducir automáticamente al primer toque/clic o interacción del usuario
             const desbloquearAudioYReproducir = () => {
                 if ('speechSynthesis' in window) {
                     window.speechSynthesis.resume();
@@ -1454,7 +1456,6 @@
             document.addEventListener('touchstart', desbloquearAudioYReproducir);
             document.addEventListener('keydown', desbloquearAudioYReproducir);
 
-            // Intento adicional de reproducción automática por si el navegador lo permite sin interacción previa
             setTimeout(() => {
                 if (!vozReproducida) {
                     reproducirBienvenidaVoz(true);
@@ -1494,7 +1495,7 @@
 
             const el = document.getElementById('contador-visitas');
             if (el) {
-                fetch('https://api.counterapi.dev/v1/camila_mobiliario_eventos_v3/visitas/up')
+                fetch('https://api.counterapi.dev/v1/camila_mobiliario_eventos_v2/visitas/up')
                     .then(response => {
                         if (!response.ok) throw new Error('Error de conexión');
                         return response.json();
