@@ -188,12 +188,12 @@
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 text-center lg:text-left">
-                    <span class="text-xs tracking-widest text-[#C5943F] font-bold uppercase block mb-3">SERVICIOS DE LA MEJOR CALIDAD PARA TUS MEJORES EVENTOS</span>
-                    <h1 class="serif-font text-3xl sm:text-5xl font-normal text-stone-900 mb-6 leading-tight">
-                        Creamos el escenario ideal <br>
-                        <span class="italic font-light text-[#5C2D20]">para tus mejores recuerdos</span>
-                    </h1>
-                    <p class="text-sm sm:text-base text-stone-600 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed mb-8">
+		    <span class="text-xs tracking-widest font-bold uppercase block mb-3" style="color: #C5943F !important;">SERVICIOS DE LA MEJOR CALIDAD PARA TUS MEJORES EVENTOS</span>
+                    <h1 class="serif-font text-3xl sm:text-5xl font-normal mb-6 leading-tight" style="color: #1c1917 !important;">
+    			Creamos el escenario ideal <br>
+    			<span class="italic font-light" style="color: #5c2d20 !important;">para tus mejores recuerdos</span>
+		    </h1>
+                    <p class="text-sm sm:text-base max-w-xl mx-auto lg:mx-0 font-light leading-relaxed mb-8" style="color: #57534e !important;">
                         Te ofrecemos la renta de mobiliario, carpas y estructuras, manteleria y arreglos, mesas de postres, letras 3D gigantes espectaculares, banquetes tradicionales y robots de animación. Todo lo que imaginas, hecho realidad con la elegancia que te mereces.
                         <button onclick="reproducirBienvenidaVoz()" class="inline-flex items-center justify-center align-middle ml-1 p-2 text-[#5C2D20] hover:text-white hover:bg-[#C5943F] transition-all duration-300 bg-[#FAF6F0] rounded-full border border-[#C5943F]/40 shadow-sm hover:shadow-md hover:-translate-y-0.5" title="Escuchar presentación">
                             <i class="fa-solid fa-volume-high text-xs"></i>
@@ -1576,7 +1576,7 @@
 
             const el = document.getElementById('contador-visitas');
             if (el) {
-                fetch('https://api.counterapi.dev/v1/camila_mobiliario_eventos_v3/visitas/up')
+                fetch('https://api.counterapi.dev/v1/camila_mobiliario_eventos_v2/visitas/up')
                     .then(response => {
                         if (!response.ok) throw new Error('Error de conexión');
                         return response.json();
